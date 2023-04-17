@@ -1,0 +1,62 @@
+public class Merge {
+
+    public void mergeSort(int[] arr, int left, int right) {
+        if (left < right) {
+            int mid = (left + right) / 2;
+            mergeSort(arr, left, mid);
+            System.out.print("*"+" ");
+            mergeSort(arr, mid + 1, right);
+            System.out.print("-"+" ");
+            merge(arr, left, mid, right);
+            System.out.print("&"+" ");
+        }
+    }
+
+    public void merge(int[] arr, int left, int mid, int right) {
+        System.out.print("%"+" ");
+        int[] temp = new int[right - left + 1];
+        int i = left;
+        int j = mid + 1;
+        int k = 0;
+
+        while (i <= mid && j <= right) {
+            System.out.print("$"+" ");
+            if (arr[i] < arr[j]) {
+                temp[k] = arr[i];
+                i++;
+            } else {
+                temp[k] = arr[j];
+                j++;
+            }
+            k++;
+        }
+
+        while (i <= mid) {
+            System.out.print("#"+" ");
+            temp[k] = arr[i];
+            i++;
+            k++;
+        }
+
+        while (j <= right) {
+            System.out.print("@"+" ");
+            temp[k] = arr[j];
+            j++;
+            k++;
+        }
+
+        for (int x = 0; x < temp.length; x++) {
+            System.out.print("!"+" ");
+            arr[left + x] = temp[x];
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] arr = { 1, 9,2, 8};
+        Merge myobj=new Merge();
+        myobj.mergeSort(arr, 0, arr.length - 1);
+        for (int i : arr) {
+            System.out.print(i + " ");
+        }
+    }
+}
