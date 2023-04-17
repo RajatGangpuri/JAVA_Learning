@@ -1,0 +1,86 @@
+public class LinkList{
+    Node head;
+    class Node{
+        Node next;
+        String data;
+        Node(String data){
+            this.data=data;
+            this.next=null;
+        }
+    }
+    public void addFirst(String data){
+        Node newNode =new Node(data);
+        if(head==null){
+            head=newNode;
+        }else{
+            newNode.next=head;
+            head=newNode;
+        }
+
+    }
+    public void addLast(String data){
+        Node newNode =new Node(data);
+        if(head==null){
+            head=newNode;
+        }
+        else{
+            Node lastNode=head;
+            while(lastNode.next!=null){
+                lastNode=lastNode.next;
+            }
+            lastNode.next=newNode;
+        }
+    }
+    public void removeFirst(){
+        if(head==null){
+            System.out.print("Empty List");
+            return;
+        }
+        head=head.next;
+    }
+    public void removeLast(){
+        if(head==null){
+            System.out.print("Empty List");
+            return;
+        }
+        else if(head.next==null){
+            head=null;
+            return;
+        }
+        else{
+            Node secondLastNode=head;
+            Node lastNode=head.next;
+            while(lastNode.next!=null){
+                lastNode=lastNode.next;
+                secondLastNode=secondLastNode.next;
+            }
+            secondLastNode.next=null;
+        }
+    }
+    public void printInfo(){
+        if(head==null){
+            System.out.print("Empty List");
+        }
+        else{
+            Node currNode=head;
+            while(currNode!=null){
+                System.out.print(currNode.data+"* ");
+                currNode=currNode.next;
+            }
+        }
+    }
+    public static void main(String[] args){
+        LinkList list=new LinkList();
+        list.addFirst("Add First 1");
+        list.addFirst("Add First 2");
+        list.addLast("Add Last1");
+        list.addLast("First Last Element");
+        list.printInfo();
+        System.out.println();
+        list.removeFirst();
+        list.printInfo();
+        System.out.println();
+        list.removeLast();
+        list.printInfo();
+    }
+}
