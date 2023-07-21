@@ -1,0 +1,19 @@
+import java.util.HashMap;
+class ArrayContainsDuplicate {
+    public static boolean containsDuplicate(int[] array) {
+        HashMap<Integer,Integer> hash=new HashMap<>();
+        for(int i=0;i<array.length;i++){
+            if(hash.containsKey(array[i])){
+                return true;
+            }
+            else{
+                hash.put(array[i],1);
+            }
+        }
+        return false;
+    }
+    public static void main(String[] args){
+        int[] array={1,2,3,1};
+        containsDuplicate(array);
+    }
+}
